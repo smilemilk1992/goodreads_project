@@ -3,7 +3,8 @@ import random
 import requests
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
-
+import sys
+sys.path.append("/root/goodreads_project/goodreads_project/")
 
 from dbhelp.insert_original import *
 from loghelp.LogHelp import *
