@@ -5,7 +5,8 @@ from bs4 import BeautifulSoup
 # from concurrent.futures import ThreadPoolExecutor
 import sys
 sys.path.append("/root/goodreads_project/")
-
+reload(sys)
+sys.setdefaultencoding('utf-8')
 from dbhelp.insert_original import *
 from loghelp.LogHelp import *
 
@@ -204,6 +205,7 @@ def insertDatabase(item):
         conn.commit()
     except Exception as errinfo:
         traceback.print_exc()
+        print errinfo
     finally:
         cur.close()
         conn.close()
