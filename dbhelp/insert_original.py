@@ -6,7 +6,7 @@ import MySQLdb
 
 class SpiderGoodreadsPipeline:
 
-
+    @staticmethod
     def insertDatabase(item):
         conn = MySQLdb.connect(
             host='120.27.218.142',
