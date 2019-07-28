@@ -106,8 +106,9 @@ def getInfo(datas):
         print link
         goodreadsId = goodreadsUrl.replace(
             "https://www.goodreads.com/book/show/", "")
-        rs = requests.get(link)
-        soup = BeautifulSoup(rs.text, "html.parser",headers={"User-Agent":random.choice(USER_AGENTS)})
+
+        rs = requests.get(link,headers={"User-Agent":random.choice(USER_AGENTS)})
+        soup = BeautifulSoup(rs.text, "html.parser")
         print soup.text
         OnlineStores = soup.find(
             "div", {
