@@ -105,7 +105,8 @@ def getInfo(datas):
         link = goodreadsUrl + "." + "_".join(x for x in title.split(" "))
         goodreadsId = goodreadsUrl.replace(
             "https://www.goodreads.com/book/show/", "")
-        rs = requests.get(link,headers={"User-Agent":random.choice(USER_AGENTS)})
+        header = {"User-Agent":random.choice(USER_AGENTS)}
+        rs = requests.get(link,headers=header)
         soup = BeautifulSoup(rs.text, "html.parser")
         OnlineStores = soup.find(
             "div", {
@@ -119,20 +120,21 @@ def getInfo(datas):
             stores[key] = value
         goodreadsAmazonUrl = "https://www.goodreads.com" + \
                              soup.find("a", id="buyButton")["href"]
+        print goodreadsAmazonUrl
         goodreadsAlibrisUrl = stores["Alibris"].split("&")[0]
         goodreadsWalmarteBooksUrl = stores["Walmart eBooks"].split("&")[0]
         goodreadsBarnesNoble = stores["Barnes & Noble"].split("&")[0]
         goodreadsIndieBound = stores["IndieBound"].split("&")[0]
         goodreadsIndigo = stores["Indigo"].split("&")[0]
-
-        AmazonUrl = requests.get(goodreadsAmazonUrl,headers={"User-Agent":random.choice(USER_AGENTS)}).url.split("ref=")[0]
-        AlibrisUrl = requests.get(goodreadsAlibrisUrl,headers={"User-Agent":random.choice(USER_AGENTS)}).url.split("&")[0]
+        print goodreadsIndigo
+        AmazonUrl = requests.get(goodreadsAmazonUrl,headers=header).url.split("ref=")[0]
+        AlibrisUrl = requests.get(goodreadsAlibrisUrl,headers=header).url.split("&")[0]
         WalmarteBooksUrl = requests.get(
-            goodreadsWalmarteBooksUrl,headers={"User-Agent":random.choice(USER_AGENTS)}).url.split("&")[0]
+            goodreadsWalmarteBooksUrl,headers=header).url.split("&")[0]
         BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
-            requests.get(goodreadsBarnesNoble,headers={"User-Agent":random.choice(USER_AGENTS)}).url.split("&")[0].split("?ean=")[1]
-        IndieBound = requests.get(goodreadsIndieBound,headers={"User-Agent":random.choice(USER_AGENTS)}).url
-        Indigo = requests.get(goodreadsIndigo,headers={"User-Agent":random.choice(USER_AGENTS)}).url
+            requests.get(goodreadsBarnesNoble,headers=header).url.split("&")[0].split("?ean=")[1]
+        IndieBound = requests.get(goodreadsIndieBound,headers=header).url
+        Indigo = requests.get(goodreadsIndigo,headers=header).url
         item = {}
         item["cudosId"] = cudosId
         item["goodreadsId"] = goodreadsId
