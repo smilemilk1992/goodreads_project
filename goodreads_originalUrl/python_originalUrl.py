@@ -139,7 +139,8 @@ def getInfo(datas):
         BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
                       sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
         print BarnesNoble
-        IndieBound = sessions.get(goodreadsIndieBound,allow_redirects=True).url
+        # IndieBound = sessions.get(goodreadsIndieBound,allow_redirects=True).url
+        IndieBound="https://www.indiebound.org/search/book?keys="+re.sub('[^0-9a-zA-Z]+', '+', title)
         Indigo = sessions.get(goodreadsIndigo,allow_redirects=True).url
         item = {}
         item["cudosId"] = cudosId
