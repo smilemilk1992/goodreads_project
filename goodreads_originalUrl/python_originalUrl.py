@@ -136,14 +136,14 @@ def getInfo(datas):
         AlibrisUrl = sessions.get(goodreadsAlibrisUrl,allow_redirects=True).url.split("&")[0]
         # WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl).url.split("&")[0]
         WalmarteBooksUrl="https://www.kobo.com/us/en/search?Query="+re.sub('[^0-9a-zA-Z]+', '+', title)
-        print WalmarteBooksUrl
+        # print WalmarteBooksUrl
         BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
                       sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
 
         # IndieBound = sessions.get(goodreadsIndieBound,allow_redirects=True).url
         IndieBound="https://www.indiebound.org/search/book?keys="+re.sub('[^0-9a-zA-Z]+', '+', title)
         Indigo = sessions.get(goodreadsIndigo,allow_redirects=True).url
-        print Indigo
+        # print Indigo
         item = {}
         item["cudosId"] = cudosId
         item["goodreadsId"] = goodreadsId
@@ -162,11 +162,11 @@ def getInfo(datas):
         item["IndieBound"] = IndieBound
         item["goodreadsIndigo"] = goodreadsIndigo
         item["Indigo"] = Indigo
-        print "-------------> 输出："+str(item)
+        # print "-------------> 输出："+str(item)
         log.logger.info("-------------> 输出："+str(item))
         SpiderGoodreadsPipeline.insertDatabase(item)
     except Exception as e:
-        print "datas="+str(datas)+" ,入库失败！e=" + str(e)
+        # print "datas="+str(datas)+" ,入库失败！e=" + str(e)
         log.logger.error("datas="+str(datas)+" ,入库失败！e=" + str(e))
 
 
