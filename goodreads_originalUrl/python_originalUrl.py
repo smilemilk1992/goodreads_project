@@ -2,7 +2,7 @@
 import random
 import requests
 from bs4 import BeautifulSoup
-# from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor
 import re
 import sys
 sys.path.append("/root/goodreads_project/")
@@ -139,10 +139,11 @@ def getInfo(datas):
         print WalmarteBooksUrl
         BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
                       sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
-        print BarnesNoble
+
         # IndieBound = sessions.get(goodreadsIndieBound,allow_redirects=True).url
         IndieBound="https://www.indiebound.org/search/book?keys="+re.sub('[^0-9a-zA-Z]+', '+', title)
         Indigo = sessions.get(goodreadsIndigo,allow_redirects=True).url
+        print Indigo
         item = {}
         item["cudosId"] = cudosId
         item["goodreadsId"] = goodreadsId
@@ -163,54 +164,54 @@ def getInfo(datas):
         item["Indigo"] = Indigo
         print "-------------> 输出："+str(item)
         log.logger.info("-------------> 输出："+str(item))
-        insertDatabase(item)
+        SpiderGoodreadsPipeline.insertDatabase(item)
     except Exception as e:
         print "datas="+str(datas)+" ,入库失败！e=" + str(e)
         log.logger.error("datas="+str(datas)+" ,入库失败！e=" + str(e))
 
 
 
-def insertDatabase(item):
-    conn = MySQLdb.connect(
-        host='120.27.218.142',
-        port=3306,
-        user='worker',
-        passwd='worker',
-        db='test',
-        charset="utf8"
-    )
-    cur = conn.cursor()
-    sql = '''INSERT IGNORE into p_news_snapshot(cudosId,goodreadsId,title,goodreadsUrl,goodreadsReq,goodreadsAmazonUrl,AmazonUrl,goodreadsAlibrisUrl,AlibrisUrl,goodreadsWalmarteBooksUrl,WalmarteBooksUrl,goodreadsBarnesNoble,BarnesNoble,goodreadsIndieBound,IndieBound,goodreadsIndigo,Indigo)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
-
-    print item,type(item)
-    try:
-        insertdata = (
-            item['cudosId'],
-            item['goodreadsId'],
-            item['title'],
-            item['goodreadsUrl'],
-            item['goodreadsReq'],
-            item['goodreadsAmazonUrl'],
-            item['AmazonUrl'],
-            item['goodreadsAlibrisUrl'],
-            item['AlibrisUrl'],
-            item['goodreadsWalmarteBooksUrl'],
-            item['WalmarteBooksUrl'],
-            item['goodreadsBarnesNoble'],
-            item['BarnesNoble'],
-            item['goodreadsIndieBound'],
-            item['IndieBound'],
-            item['goodreadsIndigo'],
-            item['Indigo']
-        )
-        cur.execute(sql, insertdata)
-        conn.commit()
-    except Exception as errinfo:
-        traceback.print_exc()
-        print errinfo
-    finally:
-        cur.close()
-        conn.close()
+# def insertDatabase(item):
+#     conn = MySQLdb.connect(
+#         host='120.27.218.142',
+#         port=3306,
+#         user='worker',
+#         passwd='worker',
+#         db='test',
+#         charset="utf8"
+#     )
+#     cur = conn.cursor()
+#     sql = '''INSERT IGNORE into p_news_snapshot(cudosId,goodreadsId,title,goodreadsUrl,goodreadsReq,goodreadsAmazonUrl,AmazonUrl,goodreadsAlibrisUrl,AlibrisUrl,goodreadsWalmarteBooksUrl,WalmarteBooksUrl,goodreadsBarnesNoble,BarnesNoble,goodreadsIndieBound,IndieBound,goodreadsIndigo,Indigo)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
+#
+#     print item,type(item)
+#     try:
+#         insertdata = (
+#             item['cudosId'],
+#             item['goodreadsId'],
+#             item['title'],
+#             item['goodreadsUrl'],
+#             item['goodreadsReq'],
+#             item['goodreadsAmazonUrl'],
+#             item['AmazonUrl'],
+#             item['goodreadsAlibrisUrl'],
+#             item['AlibrisUrl'],
+#             item['goodreadsWalmarteBooksUrl'],
+#             item['WalmarteBooksUrl'],
+#             item['goodreadsBarnesNoble'],
+#             item['BarnesNoble'],
+#             item['goodreadsIndieBound'],
+#             item['IndieBound'],
+#             item['goodreadsIndigo'],
+#             item['Indigo']
+#         )
+#         cur.execute(sql, insertdata)
+#         conn.commit()
+#     except Exception as errinfo:
+#         traceback.print_exc()
+#         print errinfo
+#     finally:
+#         cur.close()
+#         conn.close()
 
 
 if __name__ == "__main__":
