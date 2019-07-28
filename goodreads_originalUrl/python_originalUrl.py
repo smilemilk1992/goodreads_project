@@ -106,7 +106,7 @@ def getInfo(datas):
         goodreadsId = goodreadsUrl.replace(
             "https://www.goodreads.com/book/show/", "")
         rs = requests.get(link)
-        soup = BeautifulSoup(rs.text, "html.parser",headers=random.choice(USER_AGENTS))
+        soup = BeautifulSoup(rs.text, "html.parser",headers={"User-Agent":random.choice(USER_AGENTS)})
         print soup.text
         OnlineStores = soup.find(
             "div", {
@@ -126,15 +126,15 @@ def getInfo(datas):
         goodreadsIndieBound = stores["IndieBound"].split("&")[0]
         goodreadsIndigo = stores["Indigo"].split("&")[0]
 
-        AmazonUrl = requests.get(goodreadsAmazonUrl,headers=random.choice(USER_AGENTS)).url.split("ref=")[0]
+        AmazonUrl = requests.get(goodreadsAmazonUrl,headers={"User-Agent":random.choice(USER_AGENTS)}).url.split("ref=")[0]
         print AmazonUrl
-        AlibrisUrl = requests.get(goodreadsAlibrisUrl,headers=random.choice(USER_AGENTS)).url.split("&")[0]
+        AlibrisUrl = requests.get(goodreadsAlibrisUrl,headers={"User-Agent":random.choice(USER_AGENTS)}).url.split("&")[0]
         WalmarteBooksUrl = requests.get(
-            goodreadsWalmarteBooksUrl,headers=random.choice(USER_AGENTS)).url.split("&")[0]
+            goodreadsWalmarteBooksUrl,headers={"User-Agent":random.choice(USER_AGENTS)}).url.split("&")[0]
         BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
-            requests.get(goodreadsBarnesNoble,headers=random.choice(USER_AGENTS)).url.split("&")[0].split("?ean=")[1]
-        IndieBound = requests.get(goodreadsIndieBound,headers=random.choice(USER_AGENTS)).url
-        Indigo = requests.get(goodreadsIndigo,headers=random.choice(USER_AGENTS)).url
+            requests.get(goodreadsBarnesNoble,headers={"User-Agent":random.choice(USER_AGENTS)}).url.split("&")[0].split("?ean=")[1]
+        IndieBound = requests.get(goodreadsIndieBound,headers={"User-Agent":random.choice(USER_AGENTS)}).url
+        Indigo = requests.get(goodreadsIndigo,headers={"User-Agent":random.choice(USER_AGENTS)}).url
         item = {}
         item["cudosId"] = cudosId
         item["goodreadsId"] = goodreadsId
