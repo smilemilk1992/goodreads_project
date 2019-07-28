@@ -116,7 +116,7 @@ def getInfo(datas):
         sessions = requests.session()
 
         sessions.headers = header
-        rs = sessions.get(link)
+        rs = sessions.get(link,allow_redirects=True)
         soup = BeautifulSoup(rs.text, "xml")
         print soup.find(
             "div", {
