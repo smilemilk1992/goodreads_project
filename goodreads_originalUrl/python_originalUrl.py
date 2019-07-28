@@ -3,6 +3,7 @@ import random
 import requests
 from bs4 import BeautifulSoup
 # from concurrent.futures import ThreadPoolExecutor
+import re
 import sys
 sys.path.append("/root/goodreads_project/")
 reload(sys)
@@ -131,10 +132,9 @@ def getInfo(datas):
         goodreadsIndigo = stores["Indigo"].split("&")[0]
 
         AmazonUrl = sessions.get(goodreadsAmazonUrl,allow_redirects=True).url.split("ref=")[0]
-        print AmazonUrl
         AlibrisUrl = sessions.get(goodreadsAlibrisUrl,allow_redirects=True).url.split("&")[0]
-        print AlibrisUrl
-        WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl).url.split("&")[0]
+        # WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl).url.split("&")[0]
+        WalmarteBooksUrl="https://www.kobo.com/us/en/search?Query="+re.sub('[^0-9a-zA-Z]+', '+', title)
         print WalmarteBooksUrl
         BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
                       sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
