@@ -103,6 +103,7 @@ def getInfo(datas):
         goodreadsUrl = datas[1]
         title = datas[2]
         link = goodreadsUrl + "." + "_".join(x for x in title.split(" "))
+        print link
         goodreadsId = goodreadsUrl.replace(
             "https://www.goodreads.com/book/show/", "")
         rs = requests.get(link)
