@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="12257	https://www.goodreads.com/book/show/99474	The BFG	Roald Dahl"
+    x="12586	https://www.goodreads.com/book/show/33784370	Crash: The Great Depression and the Fall and Rise of America in the 1930s	Marc Favreau"
     datas = x.split("\t")
     getInfo(datas)
 
