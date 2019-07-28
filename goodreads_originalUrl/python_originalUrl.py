@@ -86,21 +86,21 @@ USER_AGENTS = [
 ]
 
 
-def start():
-    with open('cudos_goodreads.txt', "r") as f:
-        url = f.readlines()
-        # for x in url:
-        #     datas = x.split("\t")
-        #     getInfo(datas)
-        with ThreadPoolExecutor(5) as executor:
-            for x in url:
-                datas = x.split("\t")
-                executor.submit(getInfo, datas)
-
 # def start():
-#     x="286	https://www.goodreads.com/book/show/6369825	The Last Game (Start To Read! Trade Edition Ser.)	Joan Hoffman,James Hoffman"
-#     datas = x.split("\t")
-#     getInfo(datas)
+#     with open('cudos_goodreads.txt', "r") as f:
+#         url = f.readlines()
+#         # for x in url:
+#         #     datas = x.split("\t")
+#         #     getInfo(datas)
+#         with ThreadPoolExecutor(5) as executor:
+#             for x in url:
+#                 datas = x.split("\t")
+#                 executor.submit(getInfo, datas)
+
+def start():
+    x="2287	https://www.goodreads.com/book/show/20884498	Koala Lou	Mem Fox"
+    datas = x.split("\t")
+    getInfo(datas)
 
 
 def getInfo(datas):
@@ -141,21 +141,16 @@ def getInfo(datas):
         goodreadsIndigo = stores["Indigo"].split("&")[0]
 
         AmazonUrl = sessions.get(goodreadsAmazonUrl,allow_redirects=True).url.split("ref=")[0]
-        print AmazonUrl
         AlibrisUrl = sessions.get(goodreadsAlibrisUrl,allow_redirects=True).url.split("&")[0]
-        print AlibrisUrl
         # WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl).url.split("&")[0]
         WalmarteBooksUrl="https://www.kobo.com/us/en/search?Query="+"+".join(x for x in title.split(" ")).rstrip("+")
-        print WalmarteBooksUrl
         BarnesNoble=sessions.get(goodreadsBarnesNoble,allow_redirects=True).url
-        print BarnesNoble
         # BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
         #               sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
 
         # IndieBound = sessions.get(goodreadsIndieBound,allow_redirects=True).url
         IndieBound="https://www.indiebound.org/search/book?keys="+"+".join(x for x in title.split(" ")).rstrip("+")
         Indigo = sessions.get(goodreadsIndigo,allow_redirects=True).url
-        print Indigo
         item = {}
         item["cudosId"] = cudosId
         item["goodreadsId"] = goodreadsId
