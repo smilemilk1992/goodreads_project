@@ -109,18 +109,15 @@ def getInfo(datas):
         cudosId = datas[0]
         goodreadsUrl = datas[1]
         title = datas[2]
-        link = goodreadsUrl + "." + "_".join(x for x in title.split(" "))
+        link = goodreadsUrl
         goodreadsId = goodreadsUrl.replace(
             "https://www.goodreads.com/book/show/", "")
         header = {"User-Agent":random.choice(USER_AGENTS)}
         sessions = requests.session()
 
         sessions.headers = header
-        rs = sessions.get(link,allow_redirects=True)
-        soup = BeautifulSoup(rs.text, "xml")
-        print soup.find(
-            "div", {
-                "class": "floatingBox buyBox"})
+        rs = sessions.get(link)
+        soup = BeautifulSoup(rs.text, "html.parser")
         OnlineStores = soup.find(
             "div", {
                 "class": "floatingBox buyBox"}).find_all(
