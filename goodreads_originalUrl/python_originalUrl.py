@@ -127,6 +127,7 @@ def getInfo(datas):
         goodreadsIndigo = stores["Indigo"].split("&")[0]
 
         AmazonUrl = requests.get(goodreadsAmazonUrl,headers=random.choice(USER_AGENTS)).url.split("ref=")[0]
+        print AmazonUrl
         AlibrisUrl = requests.get(goodreadsAlibrisUrl,headers=random.choice(USER_AGENTS)).url.split("&")[0]
         WalmarteBooksUrl = requests.get(
             goodreadsWalmarteBooksUrl,headers=random.choice(USER_AGENTS)).url.split("&")[0]
