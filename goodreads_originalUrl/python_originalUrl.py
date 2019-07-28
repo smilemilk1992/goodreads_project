@@ -138,7 +138,7 @@ def getInfo(datas):
         goodreadsWalmarteBooksUrl = stores["Walmart eBooks"].split("&")[0]
         goodreadsBarnesNoble = stores["Barnes & Noble"].split("&")[0]
         goodreadsIndieBound = stores["IndieBound"].split("&")[0]
-        goodreadsIndigo = stores["Indigo"].split("&")[0] if stores["Indigo"] else None
+        goodreadsIndigo = stores["Indigo"].split("&")[0] if "Indigo" in stores.iterkeys() else None
         print "--",goodreadsIndigo
 
         AmazonUrl = sessions.get(goodreadsAmazonUrl,allow_redirects=True).url.split("ref=")[0]
