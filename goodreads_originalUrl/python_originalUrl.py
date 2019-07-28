@@ -110,8 +110,9 @@ def getInfo(datas):
         goodreadsUrl = datas[1]
         t = re.compile(r"(.*?)(\(|\:)")
         title = t.search(datas[2]).group(1)
-        print title
-        link = goodreadsUrl + "." + "_".join(x for x in title.split(" "))
+
+        link = goodreadsUrl + "." + re.sub('[^0-9a-zA-Z]+', '_', title)
+        print link
         goodreadsId = goodreadsUrl.replace(
             "https://www.goodreads.com/book/show/", "")
         header = {"User-Agent":random.choice(USER_AGENTS)}
