@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="679	https://www.goodreads.com/book/show/30312767	Click, Clack, Moo/Ready-to-Read: Cows That Type	Doreen Cronin,Betsy Lewin"
+    x="286	https://www.goodreads.com/book/show/6369825	The Last Game (Start To Read! Trade Edition Ser.)	Joan Hoffman,James Hoffman"
     datas = x.split("\t")
     getInfo(datas)
 
