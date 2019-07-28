@@ -133,7 +133,7 @@ def getInfo(datas):
         print AmazonUrl
         AlibrisUrl = sessions.get(goodreadsAlibrisUrl,allow_redirects=True).url.split("&")[0]
         print AlibrisUrl
-        WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl,allow_redirects=True).url.split("&")[0]
+        WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl).url.split("&")[0]
         print WalmarteBooksUrl
         BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
                       sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
