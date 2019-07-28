@@ -156,8 +156,8 @@ def getInfo(datas):
         log.logger.info("-------------> 输出："+str(item))
         SpiderGoodreadsPipeline.insertDatabase(item)
     except Exception as e:
-        print "datas="+datas+" ,入库失败！e=" + e
-        log.logger.error("datas="+datas+" ,入库失败！e=" + e)
+        print "datas="+str(datas)+" ,入库失败！e=" + e
+        log.logger.error("datas="+str(datas)+" ,入库失败！e=" + e)
 
 
 
