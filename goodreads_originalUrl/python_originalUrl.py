@@ -108,7 +108,7 @@ def getInfo(datas):
         print datas
         cudosId = datas[0]
         goodreadsUrl = datas[1]
-        title = re.search("(.*?)\(",datas[2]).group(1)
+        title = re.search("(.*?)\(|\:",datas[2]).group(1)
         link = goodreadsUrl + "." + "_".join(x for x in title.split(" "))
         goodreadsId = goodreadsUrl.replace(
             "https://www.goodreads.com/book/show/", "")
