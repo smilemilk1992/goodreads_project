@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="2287	https://www.goodreads.com/book/show/20884498	Koala Lou	Mem Fox"
+    x="1222	https://www.goodreads.com/book/show/30652384	The Rooster Who Would Not Be Quiet!	Carmen Agra Deedy,Eugene Yelchin"
     datas = x.split("\t")
     getInfo(datas)
 
@@ -134,18 +134,18 @@ def getInfo(datas):
             stores[key] = value
         goodreadsAmazonUrl = "https://www.goodreads.com" + \
                              soup.find("a", id="buyButton")["href"]
-        goodreadsAlibrisUrl = stores["Alibris"].split("&")[0]
-        goodreadsWalmarteBooksUrl = stores["Walmart eBooks"].split("&")[0]
-        goodreadsBarnesNoble = stores["Barnes & Noble"].split("&")[0]
-        goodreadsIndieBound = stores["IndieBound"].split("&")[0]
+        goodreadsAlibrisUrl = stores["Alibris"].split("&")[0] if "Alibris" in stores.iterkeys() else None
+        goodreadsWalmarteBooksUrl = stores["Walmart eBooks"].split("&")[0] if "Walmart eBooks" in stores.iterkeys() else None
+        goodreadsBarnesNoble = stores["Barnes & Noble"].split("&")[0] if "Barnes & Noble" in stores.iterkeys() else None
+        goodreadsIndieBound = stores["IndieBound"].split("&")[0] if "IndieBound" in stores.iterkeys() else None
         goodreadsIndigo = stores["Indigo"].split("&")[0] if "Indigo" in stores.iterkeys() else None
-        print "--",goodreadsIndigo
 
-        AmazonUrl = sessions.get(goodreadsAmazonUrl,allow_redirects=True).url.split("ref=")[0]
-        AlibrisUrl = sessions.get(goodreadsAlibrisUrl,allow_redirects=True).url.split("&")[0]
+
+        AmazonUrl = sessions.get(goodreadsAmazonUrl,allow_redirects=True).url.split("ref=")[0] if goodreadsAmazonUrl else None
+        AlibrisUrl = sessions.get(goodreadsAlibrisUrl,allow_redirects=True).url.split("&")[0] if goodreadsAlibrisUrl else None
         # WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl).url.split("&")[0]
         WalmarteBooksUrl="https://www.kobo.com/us/en/search?Query="+"+".join(x for x in title.split(" ")).rstrip("+")
-        BarnesNoble=sessions.get(goodreadsBarnesNoble,allow_redirects=True).url
+        BarnesNoble=sessions.get(goodreadsBarnesNoble,allow_redirects=True).url if goodreadsBarnesNoble else None
         # BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
         #               sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
 
