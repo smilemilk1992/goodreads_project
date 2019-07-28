@@ -110,7 +110,7 @@ def getInfo(datas):
         sessions = requests.session()
 
         sessions.headers = header
-        rs = sessions.get(link,allow_redirects=False)
+        rs = sessions.get(link)
         soup = BeautifulSoup(rs.text, "xml")
         OnlineStores = soup.find(
             "div", {
