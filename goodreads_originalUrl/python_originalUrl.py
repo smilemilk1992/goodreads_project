@@ -138,17 +138,19 @@ def getInfo(datas):
         goodreadsIndigo = stores["Indigo"].split("&")[0]
 
         AmazonUrl = sessions.get(goodreadsAmazonUrl,allow_redirects=True).url.split("ref=")[0]
+        print AmazonUrl
         AlibrisUrl = sessions.get(goodreadsAlibrisUrl,allow_redirects=True).url.split("&")[0]
+        print AlibrisUrl
         # WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl).url.split("&")[0]
         WalmarteBooksUrl="https://www.kobo.com/us/en/search?Query="+"+".join(x for x in title.split(" "))
-        # print WalmarteBooksUrl
+        print WalmarteBooksUrl
         BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
                       sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
 
         # IndieBound = sessions.get(goodreadsIndieBound,allow_redirects=True).url
         IndieBound="https://www.indiebound.org/search/book?keys="+"+".join(x for x in title.split(" "))
         Indigo = sessions.get(goodreadsIndigo,allow_redirects=True).url
-        # print Indigo
+        print Indigo
         item = {}
         item["cudosId"] = cudosId
         item["goodreadsId"] = goodreadsId
