@@ -39,7 +39,7 @@ class SpiderGoodreadsPipeline:
                 item['goodreadsIndigo'],
                 item['Indigo']
             )
-            cur.execute(self.sql, insertdata)
+            cur.execute(sql, insertdata)
             conn.commit()
         except Exception as errinfo:
             traceback.print_exc()
