@@ -144,9 +144,10 @@ def getInfo(datas):
         # WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl).url.split("&")[0]
         WalmarteBooksUrl="https://www.kobo.com/us/en/search?Query="+"+".join(x for x in title.split(" "))
         print WalmarteBooksUrl
-        print sessions.get(goodreadsBarnesNoble,allow_redirects=True).url
-        BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
-                      sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
+        BarnesNoble=sessions.get(goodreadsBarnesNoble,allow_redirects=True).url
+        print BarnesNoble
+        # BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
+        #               sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
 
         # IndieBound = sessions.get(goodreadsIndieBound,allow_redirects=True).url
         IndieBound="https://www.indiebound.org/search/book?keys="+"+".join(x for x in title.split(" "))
