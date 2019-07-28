@@ -86,21 +86,21 @@ USER_AGENTS = [
 ]
 
 
-def start():
-    with open('cudos_goodreads.txt', "r") as f:
-        url = f.readlines()
-        # for x in url:
-        #     datas = x.split("\t")
-        #     getInfo(datas)
-        with ThreadPoolExecutor(6) as executor:
-            for x in url:
-                datas = x.split("\t")
-                executor.submit(getInfo, datas)
-
 # def start():
-#     x="3336	https://www.goodreads.com/book/show/20604147	Finger Puppet Book: The Itsy Bitsy Spider (Little Learners)	Parragon Publishing"
-#     datas = x.split("\t")
-#     getInfo(datas)
+#     with open('cudos_goodreads.txt', "r") as f:
+#         url = f.readlines()
+#         # for x in url:
+#         #     datas = x.split("\t")
+#         #     getInfo(datas)
+#         with ThreadPoolExecutor(6) as executor:
+#             for x in url:
+#                 datas = x.split("\t")
+#                 executor.submit(getInfo, datas)
+
+def start():
+    x="1086	https://www.goodreads.com/book/show/25785698	The Night Gardener	Terry Fan,Eric Fan"
+    datas = x.split("\t")
+    getInfo(datas)
 
 
 def getInfo(datas):
