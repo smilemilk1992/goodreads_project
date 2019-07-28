@@ -108,7 +108,7 @@ def getInfo(datas):
         print datas
         cudosId = datas[0]
         goodreadsUrl = datas[1]
-        t = re.compile("(.*?)\(|\:")
+        t = re.compile(r"(.*?)(\(|\:)")
         title = t.search(datas[2]).group(1)
         print title
         link = goodreadsUrl + "." + "_".join(x for x in title.split(" "))
@@ -183,4 +183,3 @@ def getInfo(datas):
 
 if __name__ == "__main__":
     start()
-
