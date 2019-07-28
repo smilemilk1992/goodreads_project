@@ -139,6 +139,7 @@ def getInfo(datas):
         goodreadsBarnesNoble = stores["Barnes & Noble"].split("&")[0]
         goodreadsIndieBound = stores["IndieBound"].split("&")[0]
         goodreadsIndigo = stores["Indigo"].split("&")[0]
+        print "--",goodreadsIndigo
 
         AmazonUrl = sessions.get(goodreadsAmazonUrl,allow_redirects=True).url.split("ref=")[0]
         AlibrisUrl = sessions.get(goodreadsAlibrisUrl,allow_redirects=True).url.split("&")[0]
