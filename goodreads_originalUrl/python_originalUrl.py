@@ -131,9 +131,11 @@ def getInfo(datas):
         AlibrisUrl = requests.get(goodreadsAlibrisUrl,headers=header).url.split("&")[0]
         WalmarteBooksUrl = requests.get(
             goodreadsWalmarteBooksUrl,headers=header).url.split("&")[0]
+        print WalmarteBooksUrl
         BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
             requests.get(goodreadsBarnesNoble,headers=header).url.split("&")[0].split("?ean=")[1]
         IndieBound = requests.get(goodreadsIndieBound,headers=header).url
+        print IndieBound
         Indigo = requests.get(goodreadsIndigo,headers=header).url
         item = {}
         item["cudosId"] = cudosId
@@ -157,8 +159,8 @@ def getInfo(datas):
         log.logger.info("-------------> 输出："+str(item))
         SpiderGoodreadsPipeline.insertDatabase(item)
     except Exception as e:
-        print "datas="+str(datas)+" ,入库失败！e=" + e
-        log.logger.error("datas="+str(datas)+" ,入库失败！e=" + e)
+        print "datas="+str(datas)+" ,入库失败！e=" + str(e)
+        log.logger.error("datas="+str(datas)+" ,入库失败！e=" + str(e))
 
 
 
