@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="178	https://www.goodreads.com/book/show/492812	Angelina Ballerina	Katharine Holabird,Helen Craig"
+    x="149	https://www.goodreads.com/book/show/2334473	The First Story	Oliver Postgate,Peter Firmin"
     datas = x.split("\t")
     getInfo(datas)
 
@@ -144,7 +144,7 @@ def getInfo(datas):
         # WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl).url.split("&")[0]
         WalmarteBooksUrl="https://www.kobo.com/us/en/search?Query="+"+".join(x for x in title.split(" "))
         print WalmarteBooksUrl
-        BarnesNoble=sessions.get(goodreadsBarnesNoble).url
+        BarnesNoble=sessions.get(goodreadsBarnesNoble,allow_redirects=True).url
         print BarnesNoble
         # BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
         #               sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
