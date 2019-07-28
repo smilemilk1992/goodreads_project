@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
 import sys
-sys.path.append("/root/goodreads_project/goodreads_project/")
+sys.path.append("/root/goodreads_project/")
 
 from dbhelp.insert_original import *
 from loghelp.LogHelp import *
@@ -87,7 +87,7 @@ USER_AGENTS = [
 def start():
     with open('cudos_goodreads.txt', "r") as f:
         url = f.readlines()
-        with ThreadPoolExecutor(10) as executor:
+        with ThreadPoolExecutor(2) as executor:
             for x in url:
                 datas = x.split("\t")
                 executor.submit(getInfo, datas)
