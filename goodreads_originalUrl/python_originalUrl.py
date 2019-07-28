@@ -86,21 +86,21 @@ USER_AGENTS = [
 ]
 
 
-# def start():
-#     with open('cudos_goodreads.txt', "r") as f:
-#         url = f.readlines()
-#         # for x in url:
-#         #     datas = x.split("\t")
-#         #     getInfo(datas)
-#         with ThreadPoolExecutor(3) as executor:
-#             for x in url:
-#                 datas = x.split("\t")
-#                 executor.submit(getInfo, datas)
-
 def start():
-    x="286	https://www.goodreads.com/book/show/6369825	The Last Game (Start To Read! Trade Edition Ser.)	Joan Hoffman,James Hoffman"
-    datas = x.split("\t")
-    getInfo(datas)
+    with open('cudos_goodreads.txt', "r") as f:
+        url = f.readlines()
+        # for x in url:
+        #     datas = x.split("\t")
+        #     getInfo(datas)
+        with ThreadPoolExecutor(5) as executor:
+            for x in url:
+                datas = x.split("\t")
+                executor.submit(getInfo, datas)
+
+# def start():
+#     x="286	https://www.goodreads.com/book/show/6369825	The Last Game (Start To Read! Trade Edition Ser.)	Joan Hoffman,James Hoffman"
+#     datas = x.split("\t")
+#     getInfo(datas)
 
 
 def getInfo(datas):
