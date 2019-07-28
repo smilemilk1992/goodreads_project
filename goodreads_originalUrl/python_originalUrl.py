@@ -109,7 +109,7 @@ def getInfo(datas):
         sessions = requests.session()
 
         sessions.headers = header
-        rs = sessions.get(link)
+        rs = sessions.get(link,allow_redirects=False)
         soup = BeautifulSoup(rs.text, "html.parser")
         OnlineStores = soup.find(
             "div", {
@@ -128,13 +128,13 @@ def getInfo(datas):
         goodreadsBarnesNoble = stores["Barnes & Noble"].split("&")[0]
         goodreadsIndieBound = stores["IndieBound"].split("&")[0]
         goodreadsIndigo = stores["Indigo"].split("&")[0]
-        AmazonUrl = sessions.get(goodreadsAmazonUrl).url.split("ref=")[0]
-        AlibrisUrl = sessions.get(goodreadsAlibrisUrl).url.split("&")[0]
-        WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl).url.split("&")[0]
+        AmazonUrl = sessions.get(goodreadsAmazonUrl,allow_redirects=False).url.split("ref=")[0]
+        AlibrisUrl = sessions.get(goodreadsAlibrisUrl,allow_redirects=False).url.split("&")[0]
+        WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl,allow_redirects=False).url.split("&")[0]
         BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
-                      sessions.get(goodreadsBarnesNoble).url.split("&")[0].split("?ean=")[1]
-        IndieBound = sessions.get(goodreadsIndieBound).url
-        Indigo = sessions.get(goodreadsIndigo).url
+                      sessions.get(goodreadsBarnesNoble,allow_redirects=False).url.split("&")[0].split("?ean=")[1]
+        IndieBound = sessions.get(goodreadsIndieBound,allow_redirects=False).url
+        Indigo = sessions.get(goodreadsIndigo,allow_redirects=False).url
         item = {}
         item["cudosId"] = cudosId
         item["goodreadsId"] = goodreadsId
