@@ -142,7 +142,7 @@ def getInfo(datas):
         AlibrisUrl = sessions.get(goodreadsAlibrisUrl,allow_redirects=True).url.split("&")[0]
         print AlibrisUrl
         # WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl).url.split("&")[0]
-        WalmarteBooksUrl="https://www.kobo.com/us/en/search?Query="+"+".join(x for x in title.split(" "))
+        WalmarteBooksUrl="https://www.kobo.com/us/en/search?Query="+"+".join(x for x in title.split(" ")).rstrip("+")
         print WalmarteBooksUrl
         BarnesNoble=sessions.get(goodreadsBarnesNoble,allow_redirects=True).url
         print BarnesNoble
@@ -150,7 +150,7 @@ def getInfo(datas):
         #               sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
 
         # IndieBound = sessions.get(goodreadsIndieBound,allow_redirects=True).url
-        IndieBound="https://www.indiebound.org/search/book?keys="+"+".join(x for x in title.split(" "))
+        IndieBound="https://www.indiebound.org/search/book?keys="+"+".join(x for x in title.split(" ")).rstrip("+")
         Indigo = sessions.get(goodreadsIndigo,allow_redirects=True).url
         print Indigo
         item = {}
