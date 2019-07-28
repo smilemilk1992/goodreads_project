@@ -111,7 +111,7 @@ def getInfo(datas):
 
         sessions.headers = header
         rs = sessions.get(link,allow_redirects=False)
-        soup = BeautifulSoup(rs.text, "html.parser")
+        soup = BeautifulSoup(rs.text, "xml")
         OnlineStores = soup.find(
             "div", {
                 "class": "floatingBox buyBox"}).find_all(
