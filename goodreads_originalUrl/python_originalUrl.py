@@ -147,9 +147,11 @@ def getInfo(datas):
         item["IndieBound"] = IndieBound
         item["goodreadsIndigo"] = goodreadsIndigo
         item["Indigo"] = Indigo
+        print "-------------> 输出："+str(item)
         log.logger.info("-------------> 输出："+str(item))
         SpiderGoodreadsPipeline.insertDatabase(item)
     except Exception as e:
+        print "datas="+datas+" ,入库失败！e=" + e
         log.logger.error("datas="+datas+" ,入库失败！e=" + e)
 
 
