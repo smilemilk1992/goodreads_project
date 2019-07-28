@@ -172,6 +172,7 @@ def insertDatabase(item):
     cur = conn.cursor()
     sql = '''INSERT IGNORE into p_news_snapshot(cudosId,goodreadsId,title,goodreadsUrl,goodreadsReq,goodreadsAmazonUrl,AmazonUrl,goodreadsAlibrisUrl,AlibrisUrl,goodreadsWalmarteBooksUrl,WalmarteBooksUrl,goodreadsBarnesNoble,BarnesNoble,goodreadsIndieBound,IndieBound,goodreadsIndigo,Indigo)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
 
+    print item,type(item)
     try:
         insertdata = (
             item['cudosId'],
