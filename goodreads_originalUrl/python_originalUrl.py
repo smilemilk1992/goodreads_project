@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="149	https://www.goodreads.com/book/show/2334473	The First Story	Oliver Postgate,Peter Firmin"
+    x="286	https://www.goodreads.com/book/show/6369825	The Last Game (Start To Read! Trade Edition Ser.)	Joan Hoffman,James Hoffman"
     datas = x.split("\t")
     getInfo(datas)
 
