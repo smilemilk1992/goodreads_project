@@ -129,17 +129,17 @@ def getInfo(datas):
         goodreadsIndieBound = stores["IndieBound"].split("&")[0]
         goodreadsIndigo = stores["Indigo"].split("&")[0]
 
-        AmazonUrl = sessions.get(goodreadsAmazonUrl,allow_redirects=False).url.split("ref=")[0]
+        AmazonUrl = sessions.get(goodreadsAmazonUrl,allow_redirects=True).url.split("ref=")[0]
         print AmazonUrl
-        AlibrisUrl = sessions.get(goodreadsAlibrisUrl,allow_redirects=False).url.split("&")[0]
+        AlibrisUrl = sessions.get(goodreadsAlibrisUrl,allow_redirects=True).url.split("&")[0]
         print AlibrisUrl
-        WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl,allow_redirects=False).url.split("&")[0]
+        WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl,allow_redirects=True).url.split("&")[0]
         print WalmarteBooksUrl
         BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
-                      sessions.get(goodreadsBarnesNoble,allow_redirects=False).url.split("&")[0].split("?ean=")[1]
+                      sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
         print BarnesNoble
-        IndieBound = sessions.get(goodreadsIndieBound,allow_redirects=False).url
-        Indigo = sessions.get(goodreadsIndigo,allow_redirects=False).url
+        IndieBound = sessions.get(goodreadsIndieBound,allow_redirects=True).url
+        Indigo = sessions.get(goodreadsIndigo,allow_redirects=True).url
         item = {}
         item["cudosId"] = cudosId
         item["goodreadsId"] = goodreadsId
