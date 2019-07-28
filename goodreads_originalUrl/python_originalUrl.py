@@ -120,22 +120,18 @@ def getInfo(datas):
             stores[key] = value
         goodreadsAmazonUrl = "https://www.goodreads.com" + \
                              soup.find("a", id="buyButton")["href"]
-        print goodreadsAmazonUrl
         goodreadsAlibrisUrl = stores["Alibris"].split("&")[0]
         goodreadsWalmarteBooksUrl = stores["Walmart eBooks"].split("&")[0]
         goodreadsBarnesNoble = stores["Barnes & Noble"].split("&")[0]
         goodreadsIndieBound = stores["IndieBound"].split("&")[0]
         goodreadsIndigo = stores["Indigo"].split("&")[0]
-        print goodreadsIndigo
         AmazonUrl = requests.get(goodreadsAmazonUrl,headers=header).url.split("ref=")[0]
         AlibrisUrl = requests.get(goodreadsAlibrisUrl,headers=header).url.split("&")[0]
         WalmarteBooksUrl = requests.get(
             goodreadsWalmarteBooksUrl,headers=header).url.split("&")[0]
-        print WalmarteBooksUrl
         BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
             requests.get(goodreadsBarnesNoble,headers=header).url.split("&")[0].split("?ean=")[1]
         IndieBound = requests.get(goodreadsIndieBound,headers=header).url
-        print IndieBound
         Indigo = requests.get(goodreadsIndigo,headers=header).url
         item = {}
         item["cudosId"] = cudosId
