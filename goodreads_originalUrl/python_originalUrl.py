@@ -103,6 +103,7 @@ def getInfo(datas):
             "https://www.goodreads.com/book/show/", "")
         rs = requests.get(link)
         soup = BeautifulSoup(rs.text, "html.parser",headers=random.choice(USER_AGENTS))
+        print soup.text
         OnlineStores = soup.find(
             "div", {
                 "class": "floatingBox buyBox"}).find_all(
