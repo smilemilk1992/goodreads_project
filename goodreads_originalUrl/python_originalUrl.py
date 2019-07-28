@@ -87,14 +87,18 @@ USER_AGENTS = [
 def start():
     with open('cudos_goodreads.txt', "r") as f:
         url = f.readlines()
-        with ThreadPoolExecutor(2) as executor:
-            for x in url:
-                datas = x.split("\t")
-                executor.submit(getInfo, datas)
+        for x in url:
+            datas = x.split("\t")
+            getInfo(datas)
+        # with ThreadPoolExecutor(2) as executor:
+        #     for x in url:
+        #         datas = x.split("\t")
+                # executor.submit(getInfo, datas)
 
 
 def getInfo(datas):
     try:
+        print datas
         cudosId = datas[0]
         goodreadsUrl = datas[1]
         title = datas[2]
