@@ -118,6 +118,7 @@ def getInfo(datas):
                 "class": "floatingBox buyBox"}).find_all(
             "a", {
                 "class": "actionLinkLite"})
+
         stores = {}
         for i in OnlineStores:
             key = i.get_text()
