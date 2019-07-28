@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="2877	https://www.goodreads.com/book/show/17886577	Calvin and Hobbes: Something Under the Bed is Drooling	Bill Watterson"
+    x="3336	https://www.goodreads.com/book/show/20604147	Finger Puppet Book: The Itsy Bitsy Spider (Little Learners)	Parragon Publishing"
     datas = x.split("\t")
     getInfo(datas)
 
