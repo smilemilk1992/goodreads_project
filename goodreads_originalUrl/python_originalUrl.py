@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="1222	https://www.goodreads.com/book/show/30652384	The Rooster Who Would Not Be Quiet!	Carmen Agra Deedy,Eugene Yelchin"
+    x="2127	https://www.goodreads.com/book/show/26257496	Dewey Bob	Judy Schachner"
     datas = x.split("\t")
     getInfo(datas)
 
