@@ -1,8 +1,9 @@
-# http://encore.mountainview.gov/iii/encore/home;jsessionid=91C877C3DB1E1235329C9B6BA57FBBDF?lang=eng
-
-#http://encore.mountainview.gov/iii/encore/search/C__SBeastly%20Babies__Orightresult__U?lang=eng&suite=def
-
 # -*- coding: utf-8 -*-
+'''
+# http://encore.mountainview.gov/iii/encore/home;jsessionid=91C877C3DB1E1235329C9B6BA57FBBDF?lang=eng
+# http://encore.mountainview.gov/iii/encore/search/C__SBeastly%20Babies__Orightresult__U?lang=eng&suite=def
+'''
+
 import re
 from bs4 import BeautifulSoup
 import requests
@@ -27,13 +28,17 @@ with open('cudos_goodreads.txt', "r") as f:
         goodreadsUrl=data[1]
         title=data[2]
         author=data[3]
+        # 去掉标题 ？：！()后面的内容
+        title = re.split("\?|:|!|\(", title)[0]
+        # 去掉标题里面英文标签以及括号
+        title = re.sub(",|!|\?|:|;|\|-|\[|\]|\(|\)", '', re.split("\?|:|!", title)[0])
         if "None" in author:
             aclibraryUrl =url.format(re.sub('[^0-9a-zA-Z]+', '%20', title))
         else:
             authors=author.split(",")
             st = "t%3A({})".format(title)
-            for a in authors:
-                st=st+"%20"+"a%3A({})".format(a)
+            # for a in authors:
+            st=st+"%20"+"a%3A({})".format(authors[0].replace("Jr.",""))
             aclibraryUrl = url.format(st)
         rs=requests.get(aclibraryUrl)
         soup = BeautifulSoup(rs.text, 'html.parser')
