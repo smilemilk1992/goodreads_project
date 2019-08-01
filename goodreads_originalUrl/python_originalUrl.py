@@ -146,6 +146,14 @@ def getInfo(datas):
         # WalmarteBooksUrl = sessions.get(goodreadsWalmarteBooksUrl).url.split("&")[0]
         WalmarteBooksUrl="https://www.kobo.com/us/en/search?Query="+"+".join(x for x in title.split(" ")).rstrip("+")
         BarnesNoble=sessions.get(goodreadsBarnesNoble,allow_redirects=True).url if goodreadsBarnesNoble else None
+        if BarnesNoble:
+            ean = re.search("ean=(\d+)",BarnesNoble)
+            if ean:
+                barnesUrl = "https://www.barnesandnoble.com/w/?ean="+ean
+            else:
+                barnesUrl=BarnesNoble
+        else:
+            barnesUrl=None
         # BarnesNoble = "https://www.barnesandnoble.com/w/?ean=" + \
         #               sessions.get(goodreadsBarnesNoble,allow_redirects=True).url.split("&")[0].split("?ean=")[1]
 
@@ -165,7 +173,7 @@ def getInfo(datas):
         item["goodreadsWalmarteBooksUrl"] = goodreadsWalmarteBooksUrl
         item["WalmarteBooksUrl"] = WalmarteBooksUrl
         item["goodreadsBarnesNoble"] = goodreadsBarnesNoble
-        item["BarnesNoble"] = BarnesNoble
+        item["BarnesNoble"] = barnesUrl
         item["goodreadsIndieBound"] = goodreadsIndieBound
         item["IndieBound"] = IndieBound
         item["goodreadsIndigo"] = goodreadsIndigo
