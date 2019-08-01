@@ -148,7 +148,7 @@ def getInfo(datas):
         BarnesNoble=sessions.get(goodreadsBarnesNoble,allow_redirects=True).url if goodreadsBarnesNoble else None
         if BarnesNoble:
             print BarnesNoble
-            ean = re.search("ean=(\d+)",BarnesNoble).group(1)
+            ean = re.search("ean=(\d+)",BarnesNoble).group(1) if re.search("ean=(\d+)",BarnesNoble) else None
             if ean:
                 barnesUrl = "https://www.barnesandnoble.com/w/?ean={}".format(ean)
             else:
