@@ -149,7 +149,7 @@ def getInfo(datas):
         if BarnesNoble:
             ean = re.search("ean=(\d+)",BarnesNoble)
             if ean:
-                barnesUrl = "https://www.barnesandnoble.com/w/?ean="+ean
+                barnesUrl = "https://www.barnesandnoble.com/w/?ean={}".format(ean)
             else:
                 barnesUrl=BarnesNoble
         else:
