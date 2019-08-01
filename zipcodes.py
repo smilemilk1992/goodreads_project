@@ -37,20 +37,26 @@ r = s.get("https://www.nowmsg.com/us/all_state.asp")
 r.encoding = 'utf8'
 soup = BeautifulSoup(r.text,"html.parser")
 divs = soup.find_all("div",{"class":"col-sm-3"})
-for div in divs:
-    url = "https://www.nowmsg.com/us/"+div.find("a")["href"]
-    name = div.find("a").get_text().replace(" (AL)","").strip()  #州
-
-    r1 = s.get(url)
-    r1.encoding = 'utf8'
-    soup1 = BeautifulSoup(r1.text,"lxml")
-    ass = soup1.find_all("div",class_="well")[1].find_all("a")
-    for a in ass:
-        url1 = "https://www.nowmsg.com/us/{}/".format(name)+a["href"]
-        name1=a.get_text()  #城市
-        r2 = s.get(url1)
-        r2.encoding = 'utf8'
-        soup2 = BeautifulSoup(r2.text, "lxml")
-        ass = soup2.find_all("div", class_="well")[1].find_all("a")[0].get_text()
-        print name,name1,ass
+with open("douban.txt","w") as f:
+    for div in divs:
+        url = "https://www.nowmsg.com/us/"+div.find("a")["href"]
+        # name = div.find("a").get_text().replace(" (AL)","").strip()  #州
+        name=re.search("(.*?)\((.*?)\)",div.find("a").get_text()).group(1).strip()
+        ss = re.search("(.*?).*?\((.*?)\)",div.find("a").get_text()).group(2).strip()
+        # ss=div.find("a").get_text().rstrip(")").split(" (")
+        # name=ss[0]
+        # n=ss[1]
+        r1 = s.get(url)
+        r1.encoding = 'utf8'
+        soup1 = BeautifulSoup(r1.text,"lxml")
+        ass = soup1.find_all("div",class_="well")[1].find_all("a")
+        for a in ass:
+            url1 = "https://www.nowmsg.com/us/{}/".format(name)+a["href"]
+            name1=a.get_text()  #城市
+            r2 = s.get(url1)
+            r2.encoding = 'utf8'
+            soup2 = BeautifulSoup(r2.text, "lxml")
+            ass = soup2.find_all("div", class_="well")[1].find_all("a")[0].get_text()
+            print name,ss,name1,ass
+            f.write(name+"\t"+ss+"\t"+name1+"\t"+ass+"\n")
 
