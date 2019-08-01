@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
 import re
 import sys
-sys.path.append("/root/goodreads_project/")
+sys.path.append("/root/tt/goodreads_project/")
 reload(sys)
 sys.setdefaultencoding('utf-8')
 from dbhelp.insert_original import *
