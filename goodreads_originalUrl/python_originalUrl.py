@@ -147,7 +147,7 @@ def getInfo(datas):
         WalmarteBooksUrl="https://www.kobo.com/us/en/search?Query="+"+".join(x for x in title.split(" ")).rstrip("+")
         BarnesNoble=sessions.get(goodreadsBarnesNoble,allow_redirects=True).url if goodreadsBarnesNoble else None
         if BarnesNoble:
-            ean = re.search("ean=(\d+)",BarnesNoble)
+            ean = re.search("ean=(\d+)",BarnesNoble).group(1)
             if ean:
                 barnesUrl = "https://www.barnesandnoble.com/w/?ean={}".format(ean)
             else:
