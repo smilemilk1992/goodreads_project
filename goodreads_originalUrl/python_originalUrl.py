@@ -86,21 +86,21 @@ USER_AGENTS = [
 ]
 
 
-# def start():
-#     with open('cudos_goodreads.txt', "r") as f:
-#         url = f.readlines()
-#         # for x in url:
-#         #     datas = x.split("\t")
-#         #     getInfo(datas)
-#         with ThreadPoolExecutor(6) as executor:
-#             for x in url:
-#                 datas = x.split("\t")
-#                 executor.submit(getInfo, datas)
-
 def start():
-    x="11	https://www.goodreads.com/book/show/199094	Miss Bindergarten Takes a Field Trip with Kindergarten	Joseph Slate"
-    datas = x.split("\t")
-    getInfo(datas)
+    with open('cudos_goodreads.txt', "r") as f:
+        url = f.readlines()
+        # for x in url:
+        #     datas = x.split("\t")
+        #     getInfo(datas)
+        with ThreadPoolExecutor(6) as executor:
+            for x in url:
+                datas = x.split("\t")
+                executor.submit(getInfo, datas)
+
+# def start():
+#     x="11	https://www.goodreads.com/book/show/199094	Miss Bindergarten Takes a Field Trip with Kindergarten	Joseph Slate"
+#     datas = x.split("\t")
+#     getInfo(datas)
 
 
 def getInfo(datas):
