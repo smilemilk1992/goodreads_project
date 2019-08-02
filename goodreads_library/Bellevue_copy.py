@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 # https://kcls.org/
 # https://kcls.bibliocommons.com/v2/search?query=Beastly%20Babies&searchType=smart&_ga=2.223998875.1035267125.1563524865-281398772.1563524865
 # title:(Dr. Seuss's ABC)   -contributor:(Dr. Seuss)
-# -*- coding: utf-8 -*-
+
 import re
 from bs4 import BeautifulSoup
 import requests
@@ -26,6 +27,12 @@ with open('cudos_goodreads.txt', "r") as f:
         goodreadsUrl=data[1]
         title=data[2]
         author=data[3]
+        # 去掉标题 ？：！()后面的内容
+        title = re.split("\?|:|!|\(", title)[0]
+        # 去掉标题里面英文标签以及括号
+        title = re.sub(",|!|\?|:|;|\|-|\[|\]|\(|\)", '', re.split("\?|:|!", title)[0])
+        #去掉Jr.后缀,并且取第一个作者做搜索关键字
+        author=author.split(",")[0].replace("Jr.","")
         aclibraryUrl =url.format(re.sub('[^0-9a-zA-Z]+', '+', title+"+"+author))
         rs=requests.get(aclibraryUrl)
         soup = BeautifulSoup(rs.text, 'html.parser')
