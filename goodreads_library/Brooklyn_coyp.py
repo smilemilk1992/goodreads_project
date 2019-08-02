@@ -1,11 +1,11 @@
+# -*- coding: utf-8 -*-
 # https://www.bklynlibrary.org/
 
 # https://www.bklynlibrary.org/sapi/search.php?search=The%20Berenstain%20Bears%20and%20the%20Truth
 # A Counting and Barking Book
-
 #https://borrow.bklynlibrary.org/r1s/iii/encore/search/C__St%3A%28The%20Berenstain%20Bears%20and%20the%20Blame%20Game%29%20a%3A%28Stan%20Berenstain%29__Orightresult__U?lang=eng&suite=def
-#   没有完成
-# -*- coding: utf-8 -*-
+
+
 import re
 from bs4 import BeautifulSoup
 import requests
@@ -28,13 +28,18 @@ with open('cudos_goodreads.txt', "r") as f:
         goodreadsUrl=data[1]
         title=data[2]
         author=data[3]
+        # 去掉标题 ？：！()后面的内容
+        title = re.split("\?|:|!|\(", title)[0]
+        # 去掉标题里面英文标签以及括号
+        title = re.sub(",|!|\?|:|;|\|-|\[|\]|\(|\)", '', re.split("\?|:|!", title)[0])
         if "None" in author:
             aclibraryUrl =url.format(re.sub('[^0-9a-zA-Z]+', '%20', title))
         else:
             authors=author.split(",")
             st = "t%3A({})".format(title)
-            for a in authors:
-                st=st+"%20"+"a%3A({})".format(a)
+            # for a in authors:
+            # st: 标题+获取第一个作者来搜索
+            st = st + "%20" + "a%3A({})".format(authors[0].replace("Jr.", ""))
             aclibraryUrl = url.format(st)
         rs=requests.get(aclibraryUrl)
         soup = BeautifulSoup(rs.text, 'html.parser')
