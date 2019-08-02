@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="295	https://www.goodreads.com/book/show/12875557	Pete the Cat and His Four Groovy Buttons	Eric Litwin"
+    x="515	https://www.goodreads.com/book/show/33939766	Optical Physics for Babies	Chris Ferrie"
     datas = x.split("\t")
     getInfo(datas)
 
