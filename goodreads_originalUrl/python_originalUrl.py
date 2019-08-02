@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="515	https://www.goodreads.com/book/show/33939766	Optical Physics for Babies	Chris Ferrie"
+    x="939	https://www.goodreads.com/book/show/6534132	The Lion and the Mouse	Jerry Pinkney"
     datas = x.split("\t")
     getInfo(datas)
 
