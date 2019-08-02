@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="939	https://www.goodreads.com/book/show/6534132	The Lion and the Mouse	Jerry Pinkney"
+    x="1111	https://www.goodreads.com/book/show/28588035	Around America to Win the Vote: Two Suffragists, a Kitten, and 10,000 Miles	Mara Rockliff,Hadley Hooper"
     datas = x.split("\t")
     getInfo(datas)
 
