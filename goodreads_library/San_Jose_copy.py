@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
+'''
 # https://www.sjpl.org/
 # http://discover.sjlibrary.org/iii/encore/search/C__SBeastly%20Babies__Orightresult__U;jsessionid=8AD0E4B4000363C8FDBFA739A74AC433?lang=eng
 # http://discover.sjlibrary.org/iii/encore/record/C__Rb4984785__SBeastly%20Babies__Orightresult__U__X7?lang=eng&suite=sjpl
+'''
 
-# -*- coding: utf-8 -*-
 import re
 from bs4 import BeautifulSoup
 import requests
@@ -27,13 +29,17 @@ with open('cudos_goodreads.txt', "r") as f:
         goodreadsUrl=data[1]
         title=data[2]
         author=data[3]
+        # 去掉标题 ？：！()后面的内容
+        title = re.split("\?|:|!|\(", title)[0]
+        # 去掉标题里面英文标签以及括号
+        title = re.sub(",|!|\?|:|;|\|-|\[|\]|\(|\)", '', re.split("\?|:|!", title)[0])
         if "None" in author:
             aclibraryUrl =url.format(re.sub('[^0-9a-zA-Z]+', '%20', title))
         else:
             authors=author.split(",")
             st = "t%3A({})".format(title)
-            for a in authors:
-                st=st+"%20"+"a%3A({})".format(a)
+            # for a in authors:
+            st = st + "%20" + "a%3A({})".format(authors[0].replace("Jr.", ""))
             aclibraryUrl = url.format(st)
         rs=requests.get(aclibraryUrl)
         soup = BeautifulSoup(rs.text, 'html.parser')
@@ -41,6 +47,9 @@ with open('cudos_goodreads.txt', "r") as f:
         if link:
             JSESSIONID = re.search(";jsessionid=.*?\?", link["href"]).group(0)
             detailUrl = "http://discover.sjlibrary.org" + link["href"].replace(JSESSIONID, "?")
+            _title = link.get_text().strip().replace("\n", "")
+            if data[2].lower() not in _title.lower():  # 比对标题
+                detailUrl = "None"
         else:
             detailUrl = "None"
 

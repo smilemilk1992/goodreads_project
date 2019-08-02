@@ -53,6 +53,9 @@ with open('cudos_goodreads.txt', "r") as f:
         if link:
             JSESSIONID=re.search(";jsessionid=.*?\?",link["href"]).group(0)
             detailUrl = "http://encore.aclibrary.org"+link["href"].replace(JSESSIONID,"?")
+            _title = link.get_text().strip().replace("\n","")
+            if data[2].lower() not in _title.lower(): #比对标题
+                detailUrl = "None"
         else:
             detailUrl="None"
 

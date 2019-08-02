@@ -46,6 +46,9 @@ with open('cudos_goodreads.txt', "r") as f:
         link = soup.find(id="recordDisplayLink2Component")
         if link:
             detailUrl = "https://borrow.bklynlibrary.org/r1s" + link["href"]
+            _title = link.get_text().strip().replace("\n", "")
+            if data[2].lower() not in _title.lower():  # 比对标题
+                detailUrl = "None"
         else:
             detailUrl = "None"
 

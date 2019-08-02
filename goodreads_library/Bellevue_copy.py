@@ -39,6 +39,9 @@ with open('cudos_goodreads.txt', "r") as f:
         link = soup.find("h2", {"class": "cp-title"}).a["href"] if soup.find("h2", {"class": "cp-title"}) else None
         if link:
             detailUrl = "https://kcls.bibliocommons.com"+link
+            _title = soup.find("h2", {"class": "cp-title"}).find("span",{"class":"title-content"}).get_text().strip().replace("\n","")
+            if data[2].lower() not in _title.lower():  # 比对标题
+                detailUrl = "None"
         else:
             detailUrl="None"
 

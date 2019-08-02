@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
+'''
 # https://library.cityofpaloalto.org/
 # https://paloalto.bibliocommons.com/v2/search?query=Beastly%20Babies&searchType=smart
 # https://paloalto.bibliocommons.com/item/show/1270333136
-
 # https://paloalto.bibliocommons.com/v2/search?custom_edit=false&query=title%3A%28Goldilocks+and+the+Three+Bears%29+++-contributor%3A%28Sarah+Delmege%29&searchType=bl&suppress=true
-# -*- coding: utf-8 -*-
+'''
+
 import re
 from bs4 import BeautifulSoup
 import requests
@@ -28,6 +30,10 @@ with open('cudos_goodreads.txt', "r") as f:
         goodreadsUrl=data[1]
         title=data[2]
         author=data[3]
+        # 去掉标题 ？：！()后面的内容
+        title = re.split("\?|:|!|\(", title)[0]
+        # 去掉标题里面英文标签以及括号
+        title = re.sub(",|!|\?|:|;|\|-|\[|\]|\(|\)", '', re.split("\?|:|!", title)[0])
         aclibraryUrl = url.format(re.sub('[^0-9a-zA-Z]+', '+', title+"+"+author))
         rs=requests.get(aclibraryUrl)
         soup = BeautifulSoup(rs.text, 'html.parser')
@@ -35,6 +41,9 @@ with open('cudos_goodreads.txt', "r") as f:
 
         if link:
             detailUrl = "https://paloalto.bibliocommons.com" + link
+            _title = soup.find("h2", {"class": "cp-title"}).find("span",{"class": "title-content"}).get_text().strip().replace("\n", "")
+            if data[2].lower() not in _title.lower():  # 比对标题
+                detailUrl = "None"
         else:
             detailUrl = "None"
 
