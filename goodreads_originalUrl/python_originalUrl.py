@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="1318	https://www.goodreads.com/book/show/816302	All Kinds of Children	Norma Simon"
+    x="1433	https://www.goodreads.com/book/show/21965198	Emmanuel's Dream: The True Story of Emmanuel Ofosu Yeboah	Laurie Ann Thompson,Sean Qualls"
     datas = x.split("\t")
     getInfo(datas)
 
