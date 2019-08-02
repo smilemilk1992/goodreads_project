@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
 #https://www.bpl.org/
 #https://bpl.bibliocommons.com/v2/search?query=Dr.%20Seuss%27s%20ABC&searchType=smart
-# -*- coding: utf-8 -*-
+
 import re
 from bs4 import BeautifulSoup
 import requests
