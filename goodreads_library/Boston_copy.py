@@ -23,11 +23,16 @@ with open('cudos_goodreads.txt', "r") as f:
         goodreadsUrl=data[1]
         title=data[2]
         author=data[3]
+        # 去掉标题 ？：！()后面的内容
+        title = re.split("\?|:|!|\(", title)[0]
+        # 去掉标题里面英文标签以及括号
+        title = re.sub(",|!|\?|:|;|\|-|\[|\]|\(|\)", '', re.split("\?|:|!", title)[0])
+        # 去掉Jr.后缀,并且取第一个作者做搜索关键字
+        author = author.split(",")[0].replace("Jr.", "")
         aclibraryUrl = url.format(re.sub('[^0-9a-zA-Z]+', '%20', title+" "+author))
         rs=requests.get(aclibraryUrl)
         soup = BeautifulSoup(rs.text, 'html.parser')
         link = soup.find("h2", {"class": "cp-title"}).a["href"] if soup.find("h2", {"class": "cp-title"}) else None
-
         if link:
             detailUrl = "https://bpl.bibliocommons.com" + link
         else:
