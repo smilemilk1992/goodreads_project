@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="2682	https://www.goodreads.com/book/show/1239339	My Dad	Anthony Browne"
+    x="4212	https://www.goodreads.com/book/show/16211423	Pets	DK Publishing"
     datas = x.split("\t")
     getInfo(datas)
 
