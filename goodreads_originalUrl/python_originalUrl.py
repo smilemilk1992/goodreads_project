@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="4683	https://www.goodreads.com/book/show/25208290	The Finger Sports Game	Hervé Tullet"
+    x="4525	https://www.goodreads.com/book/show/30208344	Five Black Cats	Patricia Hegarty,Julia Woolf"
     datas = x.split("\t")
     getInfo(datas)
 
