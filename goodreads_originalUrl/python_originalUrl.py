@@ -86,21 +86,21 @@ USER_AGENTS = [
 ]
 
 
-def start():
-    with open('cudos_goodreads.txt', "r") as f:
-        url = f.readlines()
-        # for x in url:
-        #     datas = x.split("\t")
-        #     getInfo(datas)
-        with ThreadPoolExecutor(6) as executor:
-            for x in url:
-                datas = x.split("\t")
-                executor.submit(getInfo, datas)
-
 # def start():
-#     x="56	https://www.goodreads.com/book/show/6541572	A Busy Year	Leo Lionni"
-#     datas = x.split("\t")
-#     getInfo(datas)
+#     with open('cudos_goodreads.txt', "r") as f:
+#         url = f.readlines()
+#         # for x in url:
+#         #     datas = x.split("\t")
+#         #     getInfo(datas)
+#         with ThreadPoolExecutor(6) as executor:
+#             for x in url:
+#                 datas = x.split("\t")
+#                 executor.submit(getInfo, datas)
+
+def start():
+    x="295	https://www.goodreads.com/book/show/12875557	Pete the Cat and His Four Groovy Buttons	Eric Litwin"
+    datas = x.split("\t")
+    getInfo(datas)
 
 
 def getInfo(datas):
