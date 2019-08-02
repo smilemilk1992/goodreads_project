@@ -98,7 +98,7 @@ USER_AGENTS = [
 #                 executor.submit(getInfo, datas)
 
 def start():
-    x="254	https://www.goodreads.com/book/show/817760	The Wheels on the Bus Go Round and Round	Annie Kubler"
+    x="2682	https://www.goodreads.com/book/show/1239339	My Dad	Anthony Browne"
     datas = x.split("\t")
     getInfo(datas)
 
