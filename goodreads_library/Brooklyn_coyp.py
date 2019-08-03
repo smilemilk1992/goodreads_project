@@ -50,7 +50,10 @@ with open('cudos_goodreads.txt', "r") as f:
         if link:
             detailUrl = "https://borrow.bklynlibrary.org/r1s" + link["href"]
             _title = link.get_text().strip().replace("\n", "")
-            if data[2].lower() not in _title.lower():
+            if _title:
+                if data[2].lower() not in _title.lower():
+                    detailUrl = "None"
+            else:
                 detailUrl = "None"
         else:
             detailUrl = "None"
