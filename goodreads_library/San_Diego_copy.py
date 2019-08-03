@@ -10,6 +10,9 @@ import re
 from bs4 import BeautifulSoup
 import requests
 import xlwt
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import xlrd
 url="https://sandiego.bibliocommons.com/v2/search?query={}&searchType=smart"
 colum=["cudosid","goodreadsid","title","author","goodreadsUrl","aclibraryUrl","detailUrl"]

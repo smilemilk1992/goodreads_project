@@ -11,6 +11,9 @@ from bs4 import BeautifulSoup
 import requests
 import xlwt
 import xlrd
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 url="https://borrow.bklynlibrary.org/r1s/iii/encore/search/C__S{}__Orightresult__U?lang=eng&suite=def"
 colum=["cudosid","goodreadsid","title","author","goodreadsUrl","aclibraryUrl","detailUrl"]
 file=xlwt.Workbook(encoding='utf-8',style_compression=0)

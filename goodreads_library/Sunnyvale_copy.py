@@ -9,6 +9,9 @@ import re
 from bs4 import BeautifulSoup
 import requests
 import xlwt
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import xlrd
 url="https://catalog.sunnyvalelibrary.org/iii/encore/search/C__S{}__Orightresult__U?lang=eng&suite=cobalt"
 colum=["cudosid","goodreadsid","title","author","goodreadsUrl","aclibraryUrl","detailUrl"]

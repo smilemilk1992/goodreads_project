@@ -9,6 +9,9 @@ from bs4 import BeautifulSoup
 import requests
 import xlwt
 import xlrd
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 url="https://sccl.bibliocommons.com/v2/search?query={}&searchType=smart"
 colum=["cudosid","goodreadsid","title","author","goodreadsUrl","aclibraryUrl","detailUrl"]
 file=xlwt.Workbook(encoding='utf-8',style_compression=0)

@@ -8,6 +8,9 @@ import re
 from bs4 import BeautifulSoup
 import requests
 import xlwt
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import xlrd
 url="http://encore.mountainview.gov/iii/encore/search/C__S{}__Orightresult__U?lang=eng&suite=def"
 colum=["cudosid","goodreadsid","title","author","goodreadsUrl","aclibraryUrl","detailUrl"]
