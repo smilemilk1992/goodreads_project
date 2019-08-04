@@ -9,7 +9,7 @@ class SpiderGoodreadsPipeline:
     @staticmethod
     def insertDatabase(item):
         conn = MySQLdb.connect(
-            host='120.27.218.142',
+            host='127.0.0.1',
             port=3306,
             user='worker',
             passwd='worker',

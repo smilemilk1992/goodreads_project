@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
 import re
 import sys
-sys.path.append("/root/tt/goodreads_project/")
+sys.path.append("/root/goodreads_project/")
 reload(sys)
 sys.setdefaultencoding('utf-8')
 from dbhelp.insert_original import *
@@ -86,21 +86,19 @@ USER_AGENTS = [
 ]
 
 
-# def start():
-#     with open('cudos_goodreads.txt', "r") as f:
-#         url = f.readlines()
-#         # for x in url:
-#         #     datas = x.split("\t")
-#         #     getInfo(datas)
-#         with ThreadPoolExecutor(6) as executor:
-#             for x in url:
-#                 datas = x.split("\t")
-#                 executor.submit(getInfo, datas)
-
 def start():
-    x="12762	https://www.goodreads.com/book/show/12348649	A Night in Terror Tower	R.L. Stine"
-    datas = x.split("\t")
-    getInfo(datas)
+    with open('cudos_goodreads.txt', "r") as f:
+        url = f.readlines()
+        #开启多线程处理
+        with ThreadPoolExecutor(6) as executor:
+            for x in url:
+                datas = x.split("\t")
+                executor.submit(getInfo, datas)
+
+# def start():
+#     x="12762	https://www.goodreads.com/book/show/12348649	A Night in Terror Tower	R.L. Stine"
+#     datas = x.split("\t")
+#     getInfo(datas)
 
 
 def getInfo(datas):
