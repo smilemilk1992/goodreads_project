@@ -8,7 +8,7 @@ import sys
 sys.path.append("/root/goodreads_project/")
 reload(sys)
 sys.setdefaultencoding('utf-8')
-from dbhelp.insert_original import *
+from dbhelp.MysqlUtil import *
 from loghelp.LogHelp import *
 
 log = Loggers(level='info',filename="python_originalUrl")
